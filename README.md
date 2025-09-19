@@ -33,34 +33,30 @@ Um sistema completo de gestão de investimentos desenvolvido em C# com .NET 8, u
 
 ## 🏗️ Arquitetura
 
+O projeto segue os princípios da **Clean Architecture** com três camadas principais:
+
 ```
 InvestimentosApp/
 ├── src/
-│   ├── InvestimentosApp.Domain/         # Camada de Domínio
-│   │   ├── Models/                      # Entidades de negócio
-│   │   │   ├── Investidor.cs
-│   │   │   └── Investimento.cs
+│   ├── InvestimentosApp.Domain/         # 🏛️ Entidades e Contratos
+│   │   ├── Models/                      # Investidor.cs, Investimento.cs
 │   │   └── Interfaces/                  # Contratos dos repositórios
-│   │       ├── IInvestidorRepository.cs
-│   │       └── IInvestimentoRepository.cs
-│   ├── InvestimentosApp.Data/           # Camada de Dados
-│   │   ├── Context/                     # Contexto do Entity Framework
-│   │   │   └── AppDbContext.cs
+│   │
+│   ├── InvestimentosApp.Data/           # 💾 Acesso a Dados
+│   │   ├── Context/                     # Entity Framework
 │   │   └── Repositories/                # Implementação dos repositórios
-│   │       ├── InvestidorRepository.cs
-│   │       └── InvestimentoRepository.cs
-│   └── InvestimentosApp.API/            # Camada de Apresentação
-│       ├── Controllers/                 # Controladores da API
-│       │   ├── InvestidoresController.cs
-│       │   ├── InvestimentosController.cs
-│       │   └── ArquivosController.cs
-│       ├── Services/                    # Serviços da aplicação
-│       │   └── ArquivoService.cs
-│       └── Program.cs                   # Configuração da aplicação
-├── Data/Exports/                        # Arquivos exportados
-├── README.md                            # Documentação principal
-└── GUIA_INTEGRACAO.md                   # Guia para Visual Studio
+│   │
+│   └── InvestimentosApp.API/            # 🌐 API RESTful
+│       ├── Controllers/                 # Endpoints da API
+│       ├── Services/                    # Lógica de aplicação
+│       └── Program.cs                   # Configuração
+└── InvestimentosApp.sln
 ```
+
+**Camadas:**
+- **Domain**: Entidades de negócio e interfaces
+- **Data**: Repositórios e acesso ao Oracle Database
+- **API**: Controllers, serviços e configuração da Web API
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -245,19 +241,10 @@ Para usar os exemplos:
 2. Vá para o endpoint `POST /api/Arquivos/importar/investidores`
 3. Use o arquivo `exemplos_investidores.json` como teste
 
-## 🎓 Projeto Acadêmico
+## 🎓 Grupo
 
-Este projeto foi desenvolvido como parte da Sprint de C# da FIAP, demonstrando:
-- Conhecimento em arquitetura de software
-- Implementação de APIs RESTful
-- Integração com banco de dados Oracle
-- Boas práticas de desenvolvimento
-- Documentação técnica completa
-- Testes abrangentes e validações
-
-## 📞 Suporte
-
-Para dúvidas sobre o projeto:
-- Consulte a documentação do Swagger em tempo de execução
-- Verifique o arquivo `GUIA_INTEGRACAO.md` para integração com Visual Studio
-- Consulte os exemplos de JSON fornecidos
+Gabriel ferla - RM550695
+Henri de Oliveira Lopes - RM98347
+Lorenzo Gomes Andreata - RM551117
+Lucas Moreno Matheus - RM97158
+Victor Flávio Demarchi Viana - RM99389
