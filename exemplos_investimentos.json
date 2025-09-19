@@ -1,0 +1,44 @@
+[
+  {
+    "nome": "Tesouro Direto IPCA+",
+    "tipo": "Renda Fixa",
+    "valorInicial": 10000.00,
+    "valorAtual": 10500.00,
+    "rentabilidade": 5.0,
+    "dataInicio": "2024-01-01T00:00:00",
+    "dataVencimento": "2029-01-01T00:00:00",
+    "investidorId": 1,
+    "status": "Ativo"
+  },
+  {
+    "nome": "CDB Banco XYZ",
+    "tipo": "Renda Fixa",
+    "valorInicial": 25000.00,
+    "valorAtual": 26250.00,
+    "rentabilidade": 5.0,
+    "dataInicio": "2024-01-15T00:00:00",
+    "dataVencimento": "2026-01-15T00:00:00",
+    "investidorId": 1,
+    "status": "Ativo"
+  },
+  {
+    "nome": "Ações VALE3",
+    "tipo": "Renda Variável",
+    "valorInicial": 15000.00,
+    "valorAtual": 17250.00,
+    "rentabilidade": 15.0,
+    "dataInicio": "2024-02-01T00:00:00",
+    "investidorId": 2,
+    "status": "Ativo"
+  },
+  {
+    "nome": "Fundo Imobiliário HGLG11",
+    "tipo": "Fundos Imobiliários",
+    "valorInicial": 20000.00,
+    "valorAtual": 21200.00,
+    "rentabilidade": 6.0,
+    "dataInicio": "2024-03-01T00:00:00",
+    "investidorId": 2,
+    "status": "Ativo"
+  }
+]

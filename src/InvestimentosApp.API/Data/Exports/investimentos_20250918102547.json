@@ -1,0 +1,62 @@
+[
+  {
+    "Id": 1,
+    "Nome": "Tesouro Direto",
+    "Tipo": "Renda Fixa",
+    "ValorInicial": 10000,
+    "ValorAtual": 12000,
+    "Rentabilidade": 20,
+    "DataInicio": "2023-01-01T00:00:00",
+    "DataVencimento": null,
+    "InvestidorId": 1,
+    "Status": "Ativo"
+  },
+  {
+    "Id": 2,
+    "Nome": "A\u00E7\u00F5es PETR4",
+    "Tipo": "Renda Vari\u00E1vel",
+    "ValorInicial": 5000,
+    "ValorAtual": 5200,
+    "Rentabilidade": 4,
+    "DataInicio": "2023-02-10T00:00:00",
+    "DataVencimento": null,
+    "InvestidorId": 1,
+    "Status": "Ativo"
+  },
+  {
+    "Id": 3,
+    "Nome": "CDB Banco XYZ",
+    "Tipo": "Renda Fixa",
+    "ValorInicial": 15000,
+    "ValorAtual": 15900,
+    "Rentabilidade": 6,
+    "DataInicio": "2023-03-05T00:00:00",
+    "DataVencimento": "2025-03-05T00:00:00",
+    "InvestidorId": 2,
+    "Status": "Ativo"
+  },
+  {
+    "Id": 4,
+    "Nome": "Tesouro Selic 2029",
+    "Tipo": "Renda Fixa",
+    "ValorInicial": 10000,
+    "ValorAtual": 11200,
+    "Rentabilidade": 12,
+    "DataInicio": "2023-03-15T00:00:00",
+    "DataVencimento": null,
+    "InvestidorId": 1,
+    "Status": "Ativo"
+  },
+  {
+    "Id": 5,
+    "Nome": "Fundo de Investimento Imobili\u00E1rio (FII) XPML11",
+    "Tipo": "Renda Vari\u00E1vel",
+    "ValorInicial": 5000,
+    "ValorAtual": 5450,
+    "Rentabilidade": 9,
+    "DataInicio": "2024-02-20T00:00:00",
+    "DataVencimento": null,
+    "InvestidorId": 1,
+    "Status": "Ativo"
+  }
+]

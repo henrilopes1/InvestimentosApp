@@ -1,0 +1,50 @@
+## Build results
+[Bb]in/
+[Oo]bj/
+
+## Visual Studio files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Visual Studio Code files
+.vscode/
+
+## NuGet
+*.nupkg
+*.snupkg
+**/packages/*
+!**/packages/build/
+
+## Configuration files (may contain sensitive data)
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Local.json
+
+## Database files
+*.db
+*.sqlite
+*.sqlite3
+
+## Logs
+logs/
+*.log
+
+## Runtime files
+*.tmp
+*.temp
+
+## OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+## Project specific
+Data/Exports/*.json
+Data/Exports/*.txt

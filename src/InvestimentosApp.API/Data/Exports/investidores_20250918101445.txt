@@ -1,0 +1,5 @@
+ID,Nome,CPF,Email,DataNascimento,SaldoTotal,PerfilRisco
+6,Henri Lopes,111.222.333-44,henri@example.com,1990-05-15,60000,Moderado
+8,Gabriel Ferla,155.442.333-44,gabriel@example.com,1990-05-15,40000,Conservador
+1,João Oliveira,123.456.789-00,joao@example.com,1985-05-15,35000,Moderado
+2,Maria Santos,987.654.321-00,maria@example.com,1990-07-22,35000,Arrojado

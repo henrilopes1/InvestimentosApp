@@ -1,0 +1,26 @@
+[
+  {
+    "nome": "João Silva",
+    "cpf": "123.456.789-00",
+    "email": "joao.silva@email.com",
+    "dataNascimento": "1990-05-15T00:00:00",
+    "saldoTotal": 50000.00,
+    "perfilRisco": "Moderado"
+  },
+  {
+    "nome": "Maria Santos",
+    "cpf": "987.654.321-00",
+    "email": "maria.santos@email.com",
+    "dataNascimento": "1985-03-20T00:00:00",
+    "saldoTotal": 75000.00,
+    "perfilRisco": "Arrojado"
+  },
+  {
+    "nome": "Ana Costa",
+    "cpf": "456.789.123-00",
+    "email": "ana.costa@email.com",
+    "dataNascimento": "1992-08-10T00:00:00",
+    "saldoTotal": 35000.00,
+    "perfilRisco": "Conservador"
+  }
+]
