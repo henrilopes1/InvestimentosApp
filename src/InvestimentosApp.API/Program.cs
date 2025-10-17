@@ -41,6 +41,14 @@ builder.Services.AddScoped<IInvestimentoRepository, InvestimentoRepository>();
 // Registrar o serviço de arquivo
 builder.Services.AddScoped<ArquivoService>();
 
+// Registrar Alpha Vantage Service
+builder.Services.AddHttpClient<IAlphaVantageService, AlphaVantageService>();
+builder.Services.AddScoped<IAlphaVantageService, AlphaVantageService>();
+
+// Registrar MarketStack Service
+builder.Services.AddHttpClient<IMarketStackService, MarketStackService>();
+builder.Services.AddScoped<IMarketStackService, MarketStackService>();
+
 var app = builder.Build();
 
 // Configure o pipeline de requisição HTTP

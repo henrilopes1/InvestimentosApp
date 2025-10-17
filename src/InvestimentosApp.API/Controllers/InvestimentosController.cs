@@ -111,5 +111,106 @@ namespace InvestimentosApp.API.Controllers
 
             return NoContent();
         }
+
+        // =================== ENDPOINTS DE PESQUISA AVANÇADA ===================
+
+        // GET: Buscar por tipo
+        [HttpGet("buscar/tipo/{tipo}")]
+        public async Task<ActionResult<IEnumerable<Investimento>>> GetByTipo(string tipo)
+        {
+            var investimentos = await _investimentoRepository.GetByTipoAsync(tipo);
+            return Ok(investimentos);
+        }
+
+        // GET: Buscar por status
+        [HttpGet("buscar/status/{status}")]
+        public async Task<ActionResult<IEnumerable<Investimento>>> GetByStatus(string status)
+        {
+            var investimentos = await _investimentoRepository.GetByStatusAsync(status);
+            return Ok(investimentos);
+        }
+
+        // GET: Buscar por faixa de rentabilidade
+        [HttpGet("buscar/rentabilidade")]
+        public async Task<ActionResult<IEnumerable<Investimento>>> GetByRentabilidadeRange(
+            [FromQuery] decimal rentabilidadeMinima,
+            [FromQuery] decimal rentabilidadeMaxima)
+        {
+            var investimentos = await _investimentoRepository.GetByRentabilidadeRangeAsync(rentabilidadeMinima, rentabilidadeMaxima);
+            return Ok(investimentos);
+        }
+
+        // GET: Buscar por faixa de valor
+        [HttpGet("buscar/valor")]
+        public async Task<ActionResult<IEnumerable<Investimento>>> GetByValorRange(
+            [FromQuery] decimal valorMinimo,
+            [FromQuery] decimal valorMaximo)
+        {
+            var investimentos = await _investimentoRepository.GetByValorRangeAsync(valorMinimo, valorMaximo);
+            return Ok(investimentos);
+        }
+
+        // GET: Buscar por período
+        [HttpGet("buscar/periodo")]
+        public async Task<ActionResult<IEnumerable<Investimento>>> GetByPeriodo(
+            [FromQuery] DateTime dataInicio,
+            [FromQuery] DateTime dataFim)
+        {
+            var investimentos = await _investimentoRepository.GetByPeriodoAsync(dataInicio, dataFim);
+            return Ok(investimentos);
+        }
+
+        // GET: Busca avançada com múltiplos filtros
+        [HttpGet("buscar/avancada")]
+        public async Task<ActionResult<IEnumerable<Investimento>>> SearchAdvanced(
+            [FromQuery] string? nome,
+            [FromQuery] string? tipo,
+            [FromQuery] string? status,
+            [FromQuery] decimal? rentabilidadeMinima)
+        {
+            var investimentos = await _investimentoRepository.SearchMultipleFiltersAsync(
+                nome, tipo, status, rentabilidadeMinima);
+            return Ok(investimentos);
+        }
+
+        // GET: Top mais rentáveis
+        [HttpGet("top-rentaveis/{quantidade}")]
+        public async Task<ActionResult<IEnumerable<Investimento>>> GetTopRentaveis(int quantidade)
+        {
+            var investimentos = await _investimentoRepository.GetTopRentaveisAsync(quantidade);
+            return Ok(investimentos);
+        }
+
+        // GET: Estatísticas - Total investido
+        [HttpGet("estatisticas/total-investido")]
+        public async Task<ActionResult<object>> GetTotalInvestido()
+        {
+            var total = await _investimentoRepository.GetTotalInvestidoAsync();
+            return Ok(new { totalInvestido = total });
+        }
+
+        // GET: Estatísticas - Total atual
+        [HttpGet("estatisticas/total-atual")]
+        public async Task<ActionResult<object>> GetTotalAtual()
+        {
+            var total = await _investimentoRepository.GetTotalAtualAsync();
+            return Ok(new { totalAtual = total });
+        }
+
+        // GET: Estatísticas - Média de rentabilidade por tipo
+        [HttpGet("estatisticas/media-rentabilidade-tipo/{tipo}")]
+        public async Task<ActionResult<object>> GetMediaRentabilidadeByTipo(string tipo)
+        {
+            var media = await _investimentoRepository.GetMediaRentabilidadeByTipoAsync(tipo);
+            return Ok(new { tipo, mediaRentabilidade = media });
+        }
+
+        // GET: Estatísticas - Contagem por tipo
+        [HttpGet("estatisticas/count-tipo/{tipo}")]
+        public async Task<ActionResult<object>> CountByTipo(string tipo)
+        {
+            var count = await _investimentoRepository.CountByTipoAsync(tipo);
+            return Ok(new { tipo, quantidade = count });
+        }
     }
 }
