@@ -5,6 +5,9 @@
 - Visual Studio 2022 ou Visual Studio Code
 - .NET 8.0 SDK instalado
 - Acesso ao banco de dados Oracle (credenciais FIAP)
+- **Chaves das APIs externas** (gratuitas):
+  - [Alpha Vantage API](https://www.alphavantage.co/support/#api-key)
+  - [MarketStack API](https://marketstack.com/signup/free)
 
 ## 🔧 Configuração Inicial
 
@@ -34,20 +37,40 @@ git clone [URL_DO_REPOSITORIO]
 dotnet restore
 ```
 
-## 🔑 Configuração do Banco de Dados
+## 🔑 Configuração do Banco de Dados e APIs
 
-### Atualizar Credenciais Oracle
+### 1. Atualizar Credenciais Oracle
 No arquivo `src/InvestimentosApp.API/Program.cs`, localize a linha:
 ```csharp
 builder.Services.AddScoped<AppDbContext>(provider => 
-    new AppDbContext("SEU_RM_AQUI", "SUA_SENHA"));
+    new AppDbContext("SEU_RM_AQUI", "SUA_SENHA_AQUI"));
 ```
 
 **Substitua pelos seus dados:**
 - `"SEU_RM_AQUI"` → Seu RM da FIAP (ex: "RM12345")
-- `"SUA_SENHA"` → Sua senha do Oracle
+- `"SUA_SENHA_AQUI"` → Sua senha do Oracle
 
-### String de Conexão
+### 2. Configurar APIs Externas
+No arquivo `src/InvestimentosApp.API/appsettings.json`, atualize as chaves:
+```json
+{
+  "AlphaVantage": {
+    "ApiKey": "SUA_CHAVE_ALPHA_VANTAGE_AQUI",
+    "BaseUrl": "https://www.alphavantage.co/query",
+    "RateLimitPerMinute": 5
+  },
+  "MarketStack": {
+    "ApiKey": "SUA_CHAVE_MARKETSTACK_AQUI",
+    "BaseUrl": "https://api.marketstack.com/v1"
+  }
+}
+```
+
+**Como obter as chaves:**
+- **Alpha Vantage**: Acesse https://www.alphavantage.co/support/#api-key (gratuita)
+- **MarketStack**: Acesse https://marketstack.com/signup/free (1000 calls/mês grátis)
+
+### 3. String de Conexão Oracle
 A conexão Oracle está configurada para:
 - **Data Source**: `oracle.fiap.com.br:1521/ORCL`
 - **Schema**: Usando suas credenciais FIAP
@@ -71,13 +94,26 @@ dotnet run
 
 Após executar o projeto, acesse:
 - **Swagger UI**: http://localhost:5000/swagger/index.html
+- **API Base**: http://localhost:5000/api/
+
+### URLs de Acesso
+- **HTTP**: http://localhost:5000
+- **HTTPS**: https://localhost:5001 (certificado local)
+- **Swagger**: http://localhost:5000/swagger
 
 ## 🧪 Testando a API
 
-### 1. Via Swagger UI
+### 1. Via Swagger UI (Recomendado)
 1. Acesse http://localhost:5000/swagger/index.html
-2. Teste os endpoints diretamente na interface
-3. Use os exemplos fornecidos abaixo
+2. Explore os **38+ endpoints disponíveis**
+3. Teste diretamente na interface interativa
+4. Use os exemplos JSON fornecidos
+
+### 2. Endpoints Principais para Testar
+- **CRUD Básico**: `/api/Investidores`, `/api/Investimentos`
+- **Buscas LINQ**: `/api/Investidores/search/*`
+- **APIs Externas**: `/api/alphavantage/*`, `/api/marketstack/*`
+- **Arquivos**: `/api/Arquivos/exportar/*`
 
 ## 📝 Exemplos de Uso
 
@@ -213,12 +249,43 @@ InvestimentosApp/
 └── GUIA_INTEGRACAO.md              # Este guia
 ```
 
-## 🎯 Próximos Passos
+## � Testando APIs Externas
+
+### Alpha Vantage - Exemplos
+```bash
+# Cotação da Apple
+GET http://localhost:5000/api/alphavantage/quote/AAPL
+
+# Buscar símbolos
+GET http://localhost:5000/api/alphavantage/search/Microsoft
+
+# Dados históricos
+GET http://localhost:5000/api/alphavantage/daily/GOOGL
+```
+
+### MarketStack - Exemplos
+```bash
+# Dados End-of-Day
+GET http://localhost:5000/api/marketstack/eod/latest?symbols=AAPL
+
+# Dados Intraday
+GET http://localhost:5000/api/marketstack/intraday/latest?symbols=MSFT&interval=1min
+
+# Lista de Tickers
+GET http://localhost:5000/api/marketstack/tickers?limit=5
+
+# Lista de Bolsas
+GET http://localhost:5000/api/marketstack/exchanges
+```
+
+## �🎯 Próximos Passos
 
 1. ✅ Configure suas credenciais Oracle
-2. ✅ Execute o projeto
-3. ✅ Teste via Swagger UI
-4. ✅ Crie alguns dados de exemplo
-5. ✅ Teste as funcionalidades de arquivo
-6. ✅ Explore todos os endpoints
+2. ✅ Configure as chaves das APIs externas
+3. ✅ Execute o projeto
+4. ✅ Teste via Swagger UI
+5. ✅ Crie alguns dados de exemplo
+6. ✅ Teste as funcionalidades de arquivo
+7. ✅ Explore as APIs externas
+8. ✅ Teste as buscas LINQ avançadas
 

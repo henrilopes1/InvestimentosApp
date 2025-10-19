@@ -40,7 +40,7 @@ Um sistema completo de gestão de investimentos desenvolvido em C# com .NET 8, u
 - ✅ **70+ bolsas de valores** mundiais
 - ✅ **Dividendos e splits** históricos
 - ✅ **750+ índices de mercado**
-- ✅ **10 endpoints completos** para análise de mercado
+- ✅ **7 endpoints funcionais** para análise de mercado (testados e validados)
 
 ### 📄 Manipulação de Arquivos
 - ✅ Exportação de investidores para JSON
@@ -51,11 +51,12 @@ Um sistema completo de gestão de investimentos desenvolvido em C# com .NET 8, u
 - ✅ Validações robustas nos arquivos importados
 
 ### 🌐 Interface Web API
-- ✅ API RESTful completa com **43+ endpoints**
+- ✅ API RESTful completa com **38+ endpoints funcionais**
 - ✅ Documentação interativa com Swagger UI
-- ✅ Testes integrados na interface
+- ✅ Testes integrados na interface (100% validados)
 - ✅ Tratamento de erros padronizado
 - ✅ **Rate limiting** e controle de acesso às APIs externas
+- ✅ **Logs detalhados** para monitoramento e debugging
 
 ## 🏗️ Arquitetura
 
@@ -119,26 +120,29 @@ InvestimentosApp/
 
 ### Configuração
 1. Clone o repositório
-2. Configure suas credenciais Oracle no `Program.cs`:
+2. **Configure suas credenciais Oracle** no `Program.cs`:
    ```csharp
    builder.Services.AddScoped<AppDbContext>(provider => 
-       new AppDbContext("SEU_RM", "SUA_SENHA"));
+       new AppDbContext("SEU_RM_AQUI", "SUA_SENHA_AQUI"));
    ```
-3. Configure as chaves das APIs no `appsettings.json`:
+3. **Configure as chaves das APIs externas** no `appsettings.json`:
    ```json
    {
      "AlphaVantage": {
-       "ApiKey": "SUA_CHAVE_ALPHA_VANTAGE",
+       "ApiKey": "YOUR_ALPHA_VANTAGE_API_KEY_HERE",
        "BaseUrl": "https://www.alphavantage.co/query",
        "RateLimitPerMinute": 5
      },
      "MarketStack": {
-       "ApiKey": "SUA_CHAVE_MARKETSTACK",
+       "ApiKey": "YOUR_MARKETSTACK_API_KEY_HERE",
        "BaseUrl": "https://api.marketstack.com/v1"
      }
    }
    ```
-4. Execute as migrações (**IMPORTANTE**: As tabelas devem ser criadas manualmente - veja script SQL abaixo)
+4. **Obtenha as chaves das APIs gratuitas:**
+   - [Alpha Vantage](https://www.alphavantage.co/support/#api-key) - Gratuita (5 calls/min)
+   - [MarketStack](https://marketstack.com/signup/free) - Gratuita (1000 calls/mês)
+5. **Crie as tabelas no Oracle** (script SQL completo abaixo)
 
 ### Execução
 ```bash
@@ -207,17 +211,14 @@ dotnet run
 - `GET /api/alphavantage/technical/{symbol}/{indicator}` - Indicadores técnicos
 - `GET /api/alphavantage/news/{topics}` - Notícias financeiras
 
-#### 📈 MarketStack (10 Endpoints)
-- `GET /api/marketstack/eod` - Dados End-of-Day
-- `GET /api/marketstack/eod/latest` - Dados mais recentes
-- `GET /api/marketstack/intraday` - Dados intraday
-- `GET /api/marketstack/intraday/latest` - Intraday mais recente
-- `GET /api/marketstack/tickers` - Lista de tickers
-- `GET /api/marketstack/tickers/{symbol}` - Info específica de ticker
-- `GET /api/marketstack/exchanges` - Lista de bolsas
-- `GET /api/marketstack/exchanges/{mic}` - Info específica de bolsa
-- `GET /api/marketstack/dividends` - Histórico de dividendos
-- `GET /api/marketstack/splits` - Histórico de splits
+#### 📈 MarketStack (7 Endpoints Funcionais)
+- `GET /api/marketstack/eod` - Dados End-of-Day ✅
+- `GET /api/marketstack/eod/latest` - Dados mais recentes ✅
+- `GET /api/marketstack/intraday` - Dados intraday ✅
+- `GET /api/marketstack/intraday/latest` - Intraday mais recente ✅
+- `GET /api/marketstack/tickers` - Lista de tickers ✅
+- `GET /api/marketstack/exchanges` - Lista de bolsas ✅
+- `GET /api/marketstack/dividends` - Histórico de dividendos ✅
 
 ### 📄 Arquivos
 - `GET /api/Arquivos/exportar/investidores/json` - Exportar investidores para JSON
@@ -271,11 +272,14 @@ GET /api/alphavantage/search/Apple
 GET /api/marketstack/eod/latest?symbols=AAPL,MSFT
 # Retorna: dados de fim de dia para Apple e Microsoft
 
-GET /api/marketstack/intraday/latest?symbols=TSLA&interval=5min
-# Retorna: dados de 5 em 5 minutos da Tesla
+GET /api/marketstack/intraday/latest?symbols=AAPL&interval=1min
+# Retorna: dados intraday em intervalos de 1 minuto
 
-GET /api/marketstack/tickers?search=Apple
-# Retorna: todos os tickers relacionados à Apple
+GET /api/marketstack/tickers?limit=10
+# Retorna: lista dos primeiros 10 tickers disponíveis
+
+GET /api/marketstack/exchanges
+# Retorna: lista de todas as bolsas de valores
 ```
 
 ### Análises LINQ - Investidores
