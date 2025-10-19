@@ -5,29 +5,9 @@ namespace InvestimentosApp.Data.Context;
 
 public class AppDbContext : DbContext
 {
-    private readonly string _connString;
-
-    const string DataSource = "oracle.fiap.com.br:1521/ORCL";
-
-    public AppDbContext()
+    // NOVO CONSTRUTOR: Aceita as opções de conexão injetadas pelo Program.cs
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
-        // Construtor padrão vazio - as credenciais são configuradas via Program.cs
-        // usando o construtor AppDbContext(string usuario, string senha)
-        _connString = string.Empty;
-    }
-
-    public AppDbContext(string usuario, string senha)
-    {
-        string connString = "User Id=" + usuario + ";Password=" + senha + ";Data Source=" + DataSource;
-        _connString = connString;
-    }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if (!string.IsNullOrEmpty(_connString))
-        {
-            optionsBuilder.UseOracle(_connString);
-        }
     }
 
     // DbSets para as entidades
