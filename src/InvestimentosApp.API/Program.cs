@@ -6,25 +6,25 @@ using InvestimentosApp.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configuração explícita das URLs
+// Configuração das URLs
 builder.WebHost.UseUrls("http://localhost:5000", "https://localhost:5001");
 
-// Adiciona serviços ao container
+// Serviços básicos
 builder.Services.AddControllers();
-
-// Configure Swagger
 builder.Services.AddEndpointsApiExplorer();
+
+// Swagger
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "API de Investimentos",
+        Title = "API de Investimentos - FIAP",
         Version = "v1",
-        Description = "API para gerenciar investimentos",
+        Description = "API completa para gerenciamento de investimentos com LINQ, Alpha Vantage e MarketStack",
         Contact = new OpenApiContact
         {
-            Name = "Seu Nome",
-            Email = "seu.email@example.com"
+            Name = "Henri Lopes",
+            Email = "henri@fiap.com.br"
         }
     });
 });
@@ -34,33 +34,38 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddScoped<AppDbContext>(provider =>
     new AppDbContext("SEU_RM", "SUA_SENHA"));
 
-// Registrar os repositórios
+// Repositórios
 builder.Services.AddScoped<IInvestidorRepository, InvestidorRepository>();
 builder.Services.AddScoped<IInvestimentoRepository, InvestimentoRepository>();
 
-// Registrar o serviço de arquivo
+// Serviços auxiliares
 builder.Services.AddScoped<ArquivoService>();
 
-// Registrar Alpha Vantage Service
+// APIs externas
 builder.Services.AddHttpClient<IAlphaVantageService, AlphaVantageService>();
 builder.Services.AddScoped<IAlphaVantageService, AlphaVantageService>();
 
-// Registrar MarketStack Service
 builder.Services.AddHttpClient<IMarketStackService, MarketStackService>();
+builder.Services.AddScoped<IMarketStackService, MarketStackService>();
+
 builder.Services.AddScoped<IMarketStackService, MarketStackService>();
 
 var app = builder.Build();
 
-// Configure o pipeline de requisição HTTP
-// Habilitando o Swagger em todos os ambientes para fins de teste
+// Pipeline HTTP
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("./v1/swagger.json", "API de Investimentos v1");
+    c.SwaggerEndpoint("./v1/swagger.json", "API de Investimentos FIAP v1");
     c.RoutePrefix = "swagger";
+    c.DocumentTitle = "API Investimentos - Documentação";
 });
 
 app.UseAuthorization();
 app.MapControllers();
+
+// Mensagens de inicialização
+Console.WriteLine("🚀 API de Investimentos iniciada!");
+Console.WriteLine("📊 Swagger: http://localhost:5000/swagger");
 
 app.Run();

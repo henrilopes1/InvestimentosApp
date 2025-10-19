@@ -12,16 +12,7 @@ namespace InvestimentosApp.API.Services
         
         Task<MarketStackEodResponse?> GetEndOfDayDataByDateAsync(string symbols, DateTime date, string? exchange = null);
 
-        // Intraday Data
-        Task<MarketStackIntradayResponse?> GetIntradayDataAsync(string symbols, string? exchange = null, 
-            string interval = "1hour", DateTime? dateFrom = null, DateTime? dateTo = null, int limit = 100, int offset = 0);
-        
-        Task<MarketStackIntradayResponse?> GetLatestIntradayDataAsync(string symbols, string? exchange = null, string interval = "1hour");
-
         // Tickers
-        Task<MarketStackTickersResponse?> GetTickersAsync(string? exchange = null, string? search = null, 
-            int limit = 100, int offset = 0);
-        
         Task<MarketStackTickerData?> GetTickerInfoAsync(string symbol);
 
         // Exchanges
