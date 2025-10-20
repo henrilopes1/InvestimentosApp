@@ -135,7 +135,6 @@ InvestimentosApp/
 A aplicação já está rodando na Azure Cloud:
 
 - **📋 Swagger (Documentação Interativa):** https://invexpapp-b0fvc2e2eughdhd5.eastus2-01.azurewebsites.net/swagger/index.html
-- **🌐 API Base:** https://invexpapp-b0fvc2e2eughdhd5.eastus2-01.azurewebsites.net/api
 
 **✅ Pronto para usar! Não precisa de configuração local.**
 
@@ -509,29 +508,3 @@ Para usar os exemplos:
 - Lorenzo Gomes Andreata - RM551117
 - Lucas Moreno Matheus - RM97158
 - Victor Flávio Demarchi Viana - RM99389
-
----
-
-## 🌟 **Projeto em Produção**
-
-### 🚀 **Demonstração Online:**
-**Acesse a aplicação funcionando na Azure Cloud:**
-
-📋 **Swagger UI:** https://invexpapp-b0fvc2e2eughdhd5.eastus2-01.azurewebsites.net/swagger/index.html
-
-### ✅ **Status do Projeto:**
-- 🌐 **Deploy:** Funcionando na Azure
-- 📊 **Endpoints:** 38+ endpoints funcionais
-- 🔗 **APIs Externas:** Integradas e funcionais
-- 📋 **Documentação:** Completa no Swagger
-- 🎯 **LINQ:** 23 buscas avançadas implementadas
-- ☁️ **Cloud:** Deploy automático via GitHub Actions
-
-### 🎯 **Para Professores/Avaliadores:**
-1. **Acesse:** https://invexpapp-b0fvc2e2eughdhd5.eastus2-01.azurewebsites.net/swagger/index.html
-2. **Teste** qualquer endpoint diretamente no Swagger
-3. **Explore** as APIs externas (Alpha Vantage e MarketStack)
-4. **Verifique** as buscas LINQ avançadas
-5. **Experimente** import/export de dados
-
-**🏆 Sistema completo, funcional e profissionalmente deployado na cloud!**
