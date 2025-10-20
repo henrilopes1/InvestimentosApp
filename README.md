@@ -2,6 +2,26 @@
 
 Um sistema completo de gestão de investimentos desenvolvido em C# com .NET 8, utilizando Oracle Database e seguindo arquitetura em camadas. **Integrado com APIs externas reais para dados de mercado financeiro.**
 
+## 🌐 **APLICAÇÃO EM PRODUÇÃO NA AZURE CLOUD**
+
+### 🚀 **Acesse a API Online:**
+- **📋 Swagger UI:** https://invexpapp-b0fvc2e2eughdhd5.eastus2-01.azurewebsites.net/swagger/index.html
+- **🌐 API Base:** https://invexpapp-b0fvc2e2eughdhd5.eastus2-01.azurewebsites.net/api
+- **☁️ Deploy:** Automático via GitHub Actions
+- **🔧 Infraestrutura:** Azure App Service (East US 2)
+
+### 🧪 **Teste os Endpoints Online:**
+```bash
+# Listar investidores
+GET https://invexpapp-b0fvc2e2eughdhd5.eastus2-01.azurewebsites.net/api/investidores
+
+# Cotação em tempo real (Alpha Vantage)
+GET https://invexpapp-b0fvc2e2eughdhd5.eastus2-01.azurewebsites.net/api/alphavantage/quote/AAPL
+
+# Dados de mercado (MarketStack)
+GET https://invexpapp-b0fvc2e2eughdhd5.eastus2-01.azurewebsites.net/api/marketstack/eod/latest?symbols=MSFT
+```
+
 ## 🎯 Funcionalidades Principais
 
 ### 👥 Gestão de Investidores
@@ -98,6 +118,8 @@ InvestimentosApp/
 
 - **Framework**: .NET 8.0
 - **Linguagem**: C# 12
+- **Cloud**: Microsoft Azure App Service
+- **Deploy**: GitHub Actions (CI/CD automático)
 - **Banco de Dados**: Oracle Database (FIAP)
 - **ORM**: Entity Framework Core com LINQ avançado
 - **Provedor Oracle**: Oracle.EntityFrameworkCore v7.21.12
@@ -108,9 +130,19 @@ InvestimentosApp/
 - **Arquitetura**: Clean Architecture (Camadas)
 - **Padrões**: Repository Pattern, Dependency Injection, Service Pattern
 
-## 🚀 Como Executar
+## 🚀 Como Acessar/Executar
 
-### Pré-requisitos
+### 🌐 **Opção 1: Acessar Online (Recomendado)**
+A aplicação já está rodando na Azure Cloud:
+
+- **📋 Swagger (Documentação Interativa):** https://invexpapp-b0fvc2e2eughdhd5.eastus2-01.azurewebsites.net/swagger/index.html
+- **🌐 API Base:** https://invexpapp-b0fvc2e2eughdhd5.eastus2-01.azurewebsites.net/api
+
+**✅ Pronto para usar! Não precisa de configuração local.**
+
+### 💻 **Opção 2: Executar Localmente**
+
+#### **Pré-requisitos**
 - .NET 8.0 SDK
 - Visual Studio 2022 ou VS Code
 - Acesso ao banco Oracle SQL Developer
@@ -118,7 +150,7 @@ InvestimentosApp/
   - [Alpha Vantage](https://www.alphavantage.co/support/#api-key) 
   - [MarketStack](https://marketstack.com/signup/free)
 
-### Configuração
+#### **Configuração Local**
 1. Clone o repositório
 2. **Configure suas credenciais Oracle** no `Program.cs`:
    ```csharp
@@ -144,15 +176,37 @@ InvestimentosApp/
    - [MarketStack](https://marketstack.com/signup/free) - Gratuita (1000 calls/mês)
 5. **Crie as tabelas no Oracle** (script SQL completo abaixo)
 
-### Execução
+#### **Execução Local**
 ```bash
 cd src/InvestimentosApp.API
 dotnet run
 ```
 
-### Acesso
+#### **Acesso Local**
 - **Swagger UI**: http://localhost:5000/swagger/index.html
 - **API Base**: http://localhost:5000/api/
+
+---
+
+## 🌐 **URLs de Produção (Azure)**
+
+### **📋 Documentação e Testes:**
+- **Swagger UI:** https://invexpapp-b0fvc2e2eughdhd5.eastus2-01.azurewebsites.net/swagger/index.html
+
+### **🧪 Exemplos de Endpoints Online:**
+```bash
+# Listar investidores
+curl https://invexpapp-b0fvc2e2eughdhd5.eastus2-01.azurewebsites.net/api/investidores
+
+# Cotação da Apple (Alpha Vantage)
+curl https://invexpapp-b0fvc2e2eughdhd5.eastus2-01.azurewebsites.net/api/alphavantage/quote/AAPL
+
+# Dados de mercado da Microsoft (MarketStack)
+curl https://invexpapp-b0fvc2e2eughdhd5.eastus2-01.azurewebsites.net/api/marketstack/eod/latest?symbols=MSFT
+
+# Busca avançada de investidores por perfil
+curl https://invexpapp-b0fvc2e2eughdhd5.eastus2-01.azurewebsites.net/api/investidores/perfil/Arrojado
+```
 
 ## 📊 Endpoints da API
 
@@ -384,9 +438,35 @@ Na raiz do projeto você encontrará:
 - `exemplos_investimentos.json` - Dados de exemplo para importar investimentos
 
 Para usar os exemplos:
-1. Acesse o Swagger em http://localhost:5000/swagger
+1. Acesse o Swagger online: https://invexpapp-b0fvc2e2eughdhd5.eastus2-01.azurewebsites.net/swagger/index.html
 2. Vá para o endpoint `POST /api/Arquivos/importar/investidores`
 3. Use o arquivo `exemplos_investidores.json` como teste
+
+## ☁️ Infraestrutura e Deploy
+
+### 🚀 **Azure Cloud**
+- **App Service:** InveXpApp (East US 2)
+- **Plano:** Free Tier (ideal para demonstração)
+- **Runtime:** .NET 8.0 on Linux
+- **URL:** https://invexpapp-b0fvc2e2eughdhd5.eastus2-01.azurewebsites.net
+
+### 🔄 **CI/CD com GitHub Actions**
+- **Deploy automático** a cada push na branch `master`
+- **Build pipeline** com .NET 8
+- **Deploy usando** Azure Web Apps Deploy
+- **Logs** disponíveis no GitHub Actions
+
+### ⚙️ **Configurações de Produção**
+- **Variáveis de ambiente** seguras no Azure
+- **API Keys** configuradas como Application Settings
+- **Logs** integrados com Azure Monitor
+- **HTTPS** automático com certificado SSL
+
+### 📊 **Monitoramento**
+- **Azure Application Insights** (opcional)
+- **Logs em tempo real** via Azure Portal
+- **Health checks** automáticos
+- **Uptime monitoring** do Azure
 
 ## 🚀 Recursos Implementados
 
@@ -430,3 +510,29 @@ Para usar os exemplos:
 - Lorenzo Gomes Andreata - RM551117
 - Lucas Moreno Matheus - RM97158
 - Victor Flávio Demarchi Viana - RM99389
+
+---
+
+## 🌟 **Projeto em Produção**
+
+### 🚀 **Demonstração Online:**
+**Acesse a aplicação funcionando na Azure Cloud:**
+
+📋 **Swagger UI:** https://invexpapp-b0fvc2e2eughdhd5.eastus2-01.azurewebsites.net/swagger/index.html
+
+### ✅ **Status do Projeto:**
+- 🌐 **Deploy:** Funcionando na Azure
+- 📊 **Endpoints:** 38+ endpoints funcionais
+- 🔗 **APIs Externas:** Integradas e funcionais
+- 📋 **Documentação:** Completa no Swagger
+- 🎯 **LINQ:** 23 buscas avançadas implementadas
+- ☁️ **Cloud:** Deploy automático via GitHub Actions
+
+### 🎯 **Para Professores/Avaliadores:**
+1. **Acesse:** https://invexpapp-b0fvc2e2eughdhd5.eastus2-01.azurewebsites.net/swagger/index.html
+2. **Teste** qualquer endpoint diretamente no Swagger
+3. **Explore** as APIs externas (Alpha Vantage e MarketStack)
+4. **Verifique** as buscas LINQ avançadas
+5. **Experimente** import/export de dados
+
+**🏆 Sistema completo, funcional e profissionalmente deployado na cloud!**
