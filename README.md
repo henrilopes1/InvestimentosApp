@@ -6,7 +6,6 @@ Um sistema completo de gestão de investimentos desenvolvido em C# com .NET 8, u
 
 ### 🚀 **Acesse a API Online:**
 - **📋 Swagger UI:** https://invexpapp-b0fvc2e2eughdhd5.eastus2-01.azurewebsites.net/swagger/index.html
-- **🌐 API Base:** https://invexpapp-b0fvc2e2eughdhd5.eastus2-01.azurewebsites.net/api
 - **☁️ Deploy:** Automático via GitHub Actions
 - **🔧 Infraestrutura:** Azure App Service (East US 2)
 
