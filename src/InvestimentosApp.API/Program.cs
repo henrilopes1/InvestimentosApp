@@ -35,6 +35,12 @@ builder.Services.AddSwaggerGen(c =>
 const string OracleDataSource = "oracle.fiap.com.br:1521/ORCL"; 
 var oracleUser = builder.Configuration["ORACLE_USER"] ?? Environment.GetEnvironmentVariable("ORACLE_USER") ?? ""; 
 var oraclePassword = builder.Configuration["ORACLE_PASSWORD"] ?? Environment.GetEnvironmentVariable("ORACLE_PASSWORD") ?? ""; 
+
+// Log das configurações (sem senha)
+Console.WriteLine($"🔗 Oracle User: {oracleUser}");
+Console.WriteLine($"🔗 DataSource: {OracleDataSource}");
+Console.WriteLine($"🔗 Environment: {builder.Environment.EnvironmentName}");
+
 var oracleConnectionString = $"User Id={oracleUser};Password={oraclePassword};Data Source={OracleDataSource}";
 
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -42,8 +48,16 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 );
 
 // Repositórios
-builder.Services.AddScoped<IInvestidorRepository, InvestidorRepository>();
-builder.Services.AddScoped<IInvestimentoRepository, InvestimentoRepository>();
+try 
+{
+    builder.Services.AddScoped<IInvestidorRepository, InvestidorRepository>();
+    builder.Services.AddScoped<IInvestimentoRepository, InvestimentoRepository>();
+    Console.WriteLine("✅ Repositórios configurados");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"❌ Erro nos repositórios: {ex.Message}");
+}
 
 // Serviços auxiliares
 builder.Services.AddScoped<ArquivoService>();
